@@ -76,7 +76,7 @@ You must generate the lockfile via `./pants generate-lockfiles` to lock down all
 ## Cheatsheat
 ``` bash
 # run single unit tests
-./pants test tubi/cat/tail_test.py --  -s
+bazel test tubi/dog/... --test_output=all
 
 # run all unit tests
 ./pants test :: --  -s
