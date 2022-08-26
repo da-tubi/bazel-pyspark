@@ -1,0 +1,23 @@
+load("@dog_deps//:requirements.bzl", "requirement")
+load("//tools/pytest:defs.bzl", "pytest_test")
+
+
+py_library(
+    name = "srcs",
+    srcs=["tail.py"],
+    deps=[
+        "//tubi/common:srcs",
+        requirement("pyspark")
+    ]
+    # visibility
+)
+
+# https://github.com/bazelbuild/rules_python/issues/240
+pytest_test(
+    name="tail_test",
+    srcs=["tail_test.py"],
+    deps=[
+        ":srcs",
+    ],
+)
+

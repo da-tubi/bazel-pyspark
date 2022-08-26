@@ -1,0 +1,8 @@
+#test
+pytest==6.2.5
+
+#tools
+pytest-black
+pytest-mypy
+pytest-pylint
+pylint==2.8.2

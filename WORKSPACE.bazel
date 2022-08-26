@@ -1,0 +1,26 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "rules_python",
+    sha256 = "c03246c11efd49266e8e41e12931090b613e12a59e6f55ba2efd29a7cb8b4258",
+    strip_prefix = "rules_python-0.11.0",
+    url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.11.0.tar.gz",
+)
+
+load("@rules_python//python:pip.bzl", "pip_install")
+
+# Create a central external repo, @my_deps, that contains Bazel targets for all the
+# third-party packages specified in the requirements.txt file.
+pip_install(
+   name = "cat_deps",
+   requirements = "//3rdparty:cat_req.txt",
+)
+
+pip_install(
+   name = "dog_deps",
+   requirements = "//3rdparty:dog_req.txt",
+)
+
+pip_install(
+    name = "my_python_deps",
+    requirements = "//3rdparty:requirements.txt",
+)

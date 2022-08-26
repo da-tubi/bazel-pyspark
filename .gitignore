@@ -8,3 +8,5 @@
 /.pids
 
 __pycache__/
+
+bazel-*
