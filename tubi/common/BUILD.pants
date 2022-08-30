@@ -1,8 +1,0 @@
-python_sources(
-    name=f"sources",
-    sources=["!*_test.py", "*.py"],
-    resolve=parametrize(
-        "cat_req",
-        "dog_req",
-    ),
-)
