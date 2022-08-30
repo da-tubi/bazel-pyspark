@@ -5,8 +5,31 @@ http_archive(
     strip_prefix = "rules_python-0.11.0",
     url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.11.0.tar.gz",
 )
-
 load("@rules_python//python:pip.bzl", "pip_install")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "bazel_skylib",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.2.1/bazel-skylib-1.2.1.tar.gz",
+    ],
+    sha256 = "f7be3474d42aae265405a592bb7da8e171919d74c16f082a5457840f06054728",
+)
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+bazel_skylib_workspace()
+
+bazel_distribution_version = "e61daa787bc77d97e36df944e7223821cab309ea"  # Latest at 2021/05/24
+http_archive(
+    name = "bazel_distribution",
+    sha256 = "ed3444c57b51251e856326be8c323a0c3275825bfe252af410a706d9448d6fbb",
+    strip_prefix = "bazel-distribution-{version}".format(version = bazel_distribution_version),
+    urls = ["https://github.com/vaticle/bazel-distribution/archive/{version}.zip".format(version = bazel_distribution_version)],
+)
+pip_install(
+    name = "vaticle_bazel_distribution_pip",
+    requirements = "@bazel_distribution//pip:requirements.txt",
+)
 
 # Create a central external repo, @my_deps, that contains Bazel targets for all the
 # third-party packages specified in the requirements.txt file.

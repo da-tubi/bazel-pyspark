@@ -5,3 +5,6 @@
 # run single unit tests
 bazel test tubi/dog/... --test_output=all
 ```
+
+## References
++ https://github.com/thundergolfer/example-bazel-monorepo

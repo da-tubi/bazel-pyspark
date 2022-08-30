@@ -1,6 +1,6 @@
 load("@dog_deps//:requirements.bzl", "requirement")
 load("//tools/pytest:defs.bzl", "pytest_test")
-
+load("@bazel_distribution//pip:rules.bzl", "assemble_pip", "deploy_pip")
 
 py_library(
     name = "srcs",
@@ -21,3 +21,26 @@ pytest_test(
     ],
 )
 
+assemble_pip(
+    name = "assemble-pip",
+    package_name = "tubi-dog",
+    author = "Da Shen",
+    author_email = "da@tubi.tv",
+    classifiers = [
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.8",
+        "Intended Audience :: Developers",
+        "Environment :: Console",
+    ],
+    description = "demo bazel monorepo for python projects",
+    keywords = [
+        "pyspark",
+        "demo",
+    ],
+    license = "MIT",
+    long_description_file="//tubi/dog:README.md",
+    requirements_file = "//3rdparty:cat_req.txt",
+    target = ":srcs",
+    url = "https://github.com/da-tubi/bazel-pyspark/",
+    version_file = "//tubi/dog:version.txt",
+)
