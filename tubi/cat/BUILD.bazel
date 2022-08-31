@@ -1,7 +1,4 @@
 load("@cat_deps//:requirements.bzl", "requirement")
-load("//tools/pytest:defs.bzl", "pytest_test")
-
-
 py_library(
     name = "srcs",
     srcs=["tail.py"],
@@ -12,7 +9,9 @@ py_library(
     # visibility
 )
 
+
 # https://github.com/bazelbuild/rules_python/issues/240
+load("//tools/pytest:defs.bzl", "pytest_test")
 pytest_test(
     name="tail_test",
     srcs=["tail_test.py"],
@@ -20,3 +19,30 @@ pytest_test(
         ":srcs",
     ],
 )
+
+
+load("@bazel_distribution//pip:rules.bzl", "assemble_pip", "deploy_pip")
+assemble_pip(
+    name = "assemble-pip",
+    package_name = "tubi-cat",
+    author = "Da Shen",
+    author_email = "da@tubi.tv",
+    classifiers = [
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.8",
+        "Intended Audience :: Developers",
+        "Environment :: Console",
+    ],
+    description = "demo bazel monorepo for python projects",
+    keywords = [
+        "pyspark",
+        "demo",
+    ],
+    license = "MIT",
+    long_description_file="//tubi/cat:README.md",
+    requirements_file = "//3rdparty:cat_req.txt",
+    target = ":srcs",
+    url = "https://github.com/da-tubi/bazel-pyspark/",
+    version_file = "//tubi/cat:version.txt",
+)
+

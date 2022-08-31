@@ -1,1 +1,4 @@
-exports_files(["cat_req.txt"])
+exports_files([
+    "cat_req.txt",
+    "dog_req.txt"
+])

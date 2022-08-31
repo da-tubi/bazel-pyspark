@@ -4,6 +4,12 @@
 ``` bash
 # run single unit tests
 bazel test tubi/dog/... --test_output=all
+
+# list all python package target
+bin/package
+
+# package
+bin/package //tubi/dog:assemble-pip
 ```
 
 ## References

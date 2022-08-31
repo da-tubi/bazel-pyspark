@@ -1,7 +1,4 @@
 load("@dog_deps//:requirements.bzl", "requirement")
-load("//tools/pytest:defs.bzl", "pytest_test")
-load("@bazel_distribution//pip:rules.bzl", "assemble_pip", "deploy_pip")
-
 py_library(
     name = "srcs",
     srcs=["tail.py"],
@@ -13,6 +10,7 @@ py_library(
 )
 
 # https://github.com/bazelbuild/rules_python/issues/240
+load("//tools/pytest:defs.bzl", "pytest_test")
 pytest_test(
     name="tail_test",
     srcs=["tail_test.py"],
@@ -21,6 +19,8 @@ pytest_test(
     ],
 )
 
+
+load("@bazel_distribution//pip:rules.bzl", "assemble_pip", "deploy_pip")
 assemble_pip(
     name = "assemble-pip",
     package_name = "tubi-dog",
@@ -39,7 +39,7 @@ assemble_pip(
     ],
     license = "MIT",
     long_description_file="//tubi/dog:README.md",
-    requirements_file = "//3rdparty:cat_req.txt",
+    requirements_file = "//3rdparty:dog_req.txt",
     target = ":srcs",
     url = "https://github.com/da-tubi/bazel-pyspark/",
     version_file = "//tubi/dog:version.txt",
