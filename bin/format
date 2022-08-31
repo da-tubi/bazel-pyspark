@@ -1,5 +1,4 @@
 #!/bin/bash
 
-./pants update-build-files
+bazel run //tools/python_lint -- --check $PWD/tubi/
 
-./pants fmt ::
