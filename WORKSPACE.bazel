@@ -44,6 +44,11 @@ pip_install(
 )
 
 pip_install(
+    name = "lint_deps",
+    requirements = "//3rdparty:lint_req.txt",
+)
+
+pip_install(
     name = "my_python_deps",
     requirements = "//3rdparty:requirements.txt",
 )

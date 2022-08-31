@@ -3,3 +3,15 @@ py_library(
     srcs=["greet.py"],
     visibility = ["//visibility:public"]
 )
+
+
+genrule(
+    name = "lint",
+    srcs = glob(["**/*.py"]),
+    outs = ["lint.log"],
+    cmd_bash = """(
+        $(location //tools/python_lint) --check --verbose $(SRCS)
+        ) | tee $@
+    """,
+    tools = ["//tools/python_lint"],
+)

@@ -1,2 +1,9 @@
 #!/bin/bash
-./pants lint check ::
+
+TUBI_TARGET_NAME=$1
+
+if [[ -z "$TUBI_TARGET_NAME" ]]; then
+    bazel query 'kind(genrule, //...)' | grep "lint$"
+else
+    bazel build $TUBI_TARGET_NAME
+fi

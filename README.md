@@ -14,3 +14,9 @@ bin/package //tubi/dog:assemble-pip
 
 ## References
 + https://github.com/thundergolfer/example-bazel-monorepo
++ https://github.com/bazelbuild/rules_python
++ package: https://github.com/vaticle/bazel-distribution
++ Experimentations on Bazel by David Bernard
+  + https://dev.to/davidb31/experimentations-on-bazel-python-fastapi-1-a02
+  + https://dev.to/davidb31/experimentations-on-bazel-python-2-linter-52
+  + https://dev.to/davidb31/experimentations-on-bazel-python-3-linter-pytest-49oh

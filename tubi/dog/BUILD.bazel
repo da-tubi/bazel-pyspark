@@ -44,3 +44,14 @@ assemble_pip(
     url = "https://github.com/da-tubi/bazel-pyspark/",
     version_file = "//tubi/dog:version.txt",
 )
+
+genrule(
+    name = "lint",
+    srcs = glob(["**/*.py"]),
+    outs = ["lint.log"],
+    cmd_bash = """(
+        $(location //tools/python_lint) --check --verbose $(SRCS)
+        ) | tee $@
+    """,
+    tools = ["//tools/python_lint"],
+)
