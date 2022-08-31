@@ -10,6 +10,15 @@ bin/package
 
 # package
 bin/package //tubi/dog:assemble-pip
+
+# list all lint target
+bin/lint
+
+# lint
+bin/lint //tubi/dog:lint
+
+# format
+bin/format
 ```
 
 ## References
